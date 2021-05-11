@@ -1,0 +1,61 @@
+<div class="form-container">
+
+    <h1>Contacta con Nosotros!</h1>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+
+        <!-- campo nombre -->
+        <input class="mt-5" type="text" formControlName="name" placeholder="Tu Nombre">
+
+        <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+
+            <div class="container-error-message" *ngIf="name.errors.required">
+                name es requerido
+            </div>
+
+            <div class="container-error-message" *ngIf="name.errors.minlength">
+                al menos 5 caracteres
+            </div>
+
+        </div>
+
+        <!-- campo email -->
+        <input type="text" formControlName="email" placeholder="Tu Correo">
+
+        <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+
+            <div class="container-error-message" *ngIf="email.errors.required">
+                email es requerido
+            </div>
+
+            <div class="container-error-message" *ngIf="email.errors.minlength">
+                al menos 5 caracteres
+            </div>
+
+            <div class="container-error-message" *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
+                escriba un correo valido
+            </div>
+
+        </div>
+
+        <!-- campo message-->
+        <textarea formControlName="message" placeholder="Escribe tu Mensaje"></textarea>
+
+        <div class="alert alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
+
+            <div class="container-error-message" *ngIf="message.errors.required">
+                name es requerido
+            </div>
+
+            <div class="container-error-message" *ngIf="message.errors.minlength">
+                al menos 10 caracteres
+            </div>
+
+        </div>
+
+        <button class="btn-send" type="submit" [disabled]="!contactForm.valid">Enviar</button>
+
+        <!-- para bloquear el boton cuando no hay nada que enviar  [disabled]="!contactForm.valid" -->
+
+    </form>
+</div>
